@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^api/v1/recipes/(.*)$ api/v1/recipes.php? [QSA, NC,L]
-#RewriteRule ^/recipes/([0-1]+)/?$ recipes.php?recipeName=$1 [NC,L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/v1/recipes/([1-2]+)/?$ recipes.php?recipeName=$1 [NC,L]
+RewriteRule ^api/v1/recipes/(.*)$ api/v1/recipes.php? [QSA,NC,L]
+
 </IfModule>
