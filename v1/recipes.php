@@ -1,9 +1,10 @@
 include("../credentials.php");
+
 $db = new dbConnection();
 $connection = $db->getConnection();
 
-if(!empty($GET["id"])) {
-    $recipeName = strval($_GET["id"]);
+if(!empty($GET["recipeName"])) {
+    $recipeName = strval($_GET["recipeName"]);
     getRecipeByName($recipeName);
 } else {
     getAllRecipes();
