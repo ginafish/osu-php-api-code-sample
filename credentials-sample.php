@@ -1,18 +1,26 @@
 <?php
+Class dbConnection {
+    var $dbhost = 'oniddb.cws.oregonstate.edu';
+    var $dbname = 'db';
+    var $dbuser = 'db';
+    var $dbpass = 'pass';
+    var $connection;
 
-$dbhost = 'oniddb.cws.oregonstate.edu';
-$dbname = 'db';
-$dbuser = 'db';
-$dbpass = 'pass';
+    function getConnection() {
+        $mysql_handle = mysqli_connect($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname)
+        or die("Error connecting to database server");
 
-$mysql_handle = mysql_connect($dbhost, $dbuser, $dbpass)
-    or die("Error connecting to database server");
+        if(mysqli_connect_errno()) {
+            printf("Connection failed.");
+            exit();
+        }
+        $this->connection = $mysql_handle;
+        return $this->connection;
+    }
 
-mysql_select_db($dbname, $mysql_handle)
-    or die("Error selecting database: $dbname");
-
-echo 'Successfully connected to database!';
-
-mysql_close($mysql_handle);
+    function closeConnection() {
+        mysqli_close($this->connection);
+    }
+}
 
 ?>
